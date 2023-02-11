@@ -24,11 +24,17 @@ class Case:
 
     def mettre_une_maison(self):
         if self.type=="Propriété":
-            if self.nb_maison<=4:
+            if self.nb_maison<4:
                 self.loyer=round(self.loyer*1.5,0)
                 self.nb_maison+=1
             else:
                 raise IndexError('Trop de maisons')
+
+    def poser_un_hôtel(self):
+        if self.type=="Propriété":
+            if self.nb_maison=4:
+                self.loyer=round(self.loyer*2,0)
+                self.nb_maison=5
 
 joueurs=[j1,j2,j3,j4]
 
