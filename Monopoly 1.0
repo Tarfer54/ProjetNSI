@@ -1,0 +1,42 @@
+loyer={
+        'marron':60,
+        'bleu clair':100,
+        'rose':140,
+        'orange':180,
+        'rouge':220,
+        'jaune':260,
+        'vert':300,
+        'bleu':350,
+        'gare':200
+        }
+
+class Propriété:
+    def __init__(self,couleur,nom):
+        self.nom=nom
+        self.couleur=couleur
+        self.loyer=loyer[self.couleur]
+        self.prix=self.loyer*5
+        self.nb_maison=0
+
+    def mettre_une_maison(self):
+        if self.nb_maison<=4:
+            self.loyer=round(self.loyer*1.5,0)
+            self.nb_maison+=1
+        else:
+             raise IndexError('Trop de maisons')
+
+class Joueur:
+    def __init__(self):
+        self.propriétés=[]
+        self.argent=1500000
+
+    def acheter(self,propriété):
+        self.propriétés.appand(propriété)
+        self.argent-=propriété.prix
+
+    def tomber_chez_qqun(self,autre,propriété):
+        if self.argent>=propriété.loyer:
+            self.argent-=propriété.loyer
+            autre.argent+=propriété.loyer
+        else:
+            self.vendre() #fonction vendre à définir
