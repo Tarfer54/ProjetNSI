@@ -1,0 +1,306 @@
+from random import *
+
+loyer={'marron':60,
+        'bleu clair':100,
+        'rose':140,
+        'orange':180,
+        'rouge':220,
+        'jaune':260,
+        'vert':300,
+        'bleu':350,
+        'gare':200
+        }
+
+class Case:
+    def __init__(self,couleur=None,type,nom,ncase):
+        self.nom=nom
+        self.type=type
+        self.couleur=couleur
+        self.loyer=loyer[self.couleur]
+        self.prix=self.loyer*5
+        self.nb_maison=0
+        self.ncase=ncase
+
+    def mettre_une_maison(self):
+        if self.type=="Propriété":
+            if self.nb_maison<4:
+                self.loyer=round(self.loyer*1.5,0)
+                self.nb_maison+=1
+            else:
+                raise IndexError('Trop de maisons')
+
+    def poser_un_hôtel(self):
+        if self.type=="Propriété":
+            if self.nb_maison==4:
+                self.loyer=round(self.loyer*2,0)
+                self.nb_maison=5
+
+joueurs=[j1,j2,j3,j4]
+
+class Joueur:
+    def __init__(self):
+        self.propriétés=[]
+        self.argent=1500000
+        self.ncase=0
+        self.case="départ"
+        joueur.csp=0
+        joueurs.append(self)
+
+    def acheter(self,propriété):
+        for joueur in joueurs:
+            if propriété in joueur.propriétés:
+                return ("Cette propriété appartient déjà à un joueur")
+        if self.argent>=propriété.prix:
+            self.propriétés.append(propriété)
+            self.argent-=propriété.prix
+        else:
+            print("Vous n'avez pas assez d'argent")
+
+    def vendre(self,propriété):
+        self.argent+=propriété.prix//2
+        for pro in self.propriétés:
+            if pro.nom==propriété.nom:
+                self.propriétés.pop(pro)
+
+    def tomber_chez_qqun(self,autre,propriété):
+        if self.argent>=propriété.loyer:
+            self.argent-=propriété.loyer
+            autre.argent+=propriété.loyer
+        else:
+            while self.argent<propriété.loyer:
+                if self.propriété==[]:
+                    autre.argent+=self.argent
+                    self.argent=0
+                    joueurs.pop(self)
+                    return ("Vous avez fait faillite")
+                propriété=input("Quelle propriété voulez-vous vendre ?")
+                while propriété not in self.propriétés:
+                    propriété=input("Cette propriété ne vous appartient pas, quelle propriété voulez-vous vendre ?")
+                self.vendre()
+
+def tellCase(joueur):
+    for prop in propriétés:
+        if joueur.ncase==prop.ncase:
+            return (prop)
+
+def chance(joueur):
+    action=chances.pop(0)
+    #effectuer l'action
+    chances.append(action)
+
+
+chances=[("Gagnez 10000",prime(joueur,10000)),("Allez à la rue de la Paix",aller(joueur,Rue_de_la_Paix)),("Payez des réparations : 4000 par maison / 11500 par hôtel",impôts(joueur,4000,11500)),("Allez en prison",aller_sans_départ(joueur,Allez_en_Prison)),
+("Gagnez 15000",prime(joueur,15000)),("Reculez de 3 cases",reculer(joueur,3)),("Allez à la case Départ",aller(joueur,Départ)),("Gagnez 5000",prime(joueur,5000)),("Allez à la Gare de Lyon",aller(joueur,Gare_de_Lyon)),("Perdez 2000",prime(joueur,-2000)),
+("Perdez 1500",prime(joueur,-1500)),("Allez à l'avenue Henri-Martin",aller(joueur,Avenue_Henri_Martin)),("Payez des réparations : 2500 par maison / 10000 par hôtel",impôts(joueur,2500,10000)),("Allez au Boulevard de la Vilette",aller(joueur,Boulevard_de_la_Villette)),
+("Perdez 15000",prime(joueur,-15000)),("Carte sortie de prison",prendre_csp(joueur))]
+
+def prendre_csp(joueur):
+    joueur.csp+=1
+
+def impôts(joueur,i_maisons,i_hôtels):
+        for propriété in joueur.propriétés:
+                if propriété.nb_maisons>5:
+                        joueur.argent-=propriété.nb_maisons*i_maisons
+                else:
+                        joueur.argent-=i_hôtels
+
+def communaute(joueur):
+    carte=randint(1,len(communautés))
+
+communautés=[("Perdez 1000 ou tirez une carte chance",choix_chance(-1000)),("Perdez 5000",prime(joueur,-5000)),("Gagnez 10000",prime(joueur,10000)),("Gagnez 2500",prime(joueur,2500)),("Gagnez 20000",prime(joueur,20000)),
+("Gagnez 10000",prime(joueur,10000)),("Carte sortie de prison",prendre_csp(joueur)),("Allez en prison",aller_sans_départ(joueur,Allez_en_Prison)),("Gagnez 2000",prime(joueur,2000)),("Perdez 10000",prime(joueur,-10000)),("Gagnez 5000",prime(joueur,5000)),
+("Perdez 5000",prime(joueur,-5000)),("Gagnez 1000",prime(joueur,1000)),("C'est votre anniversaire, chaque joueur vous verse 1000",anniversaire(joueur)),("Allez au boulevard de Belleville sans passer par la case départ",aller_sans_départ(joueur,Boulevard_de_Bellevile)),
+("Allez à la case Départ",aller(joueur,Départ))]
+
+def choix_chance(montant):
+    choix = input("Décidez vous de tirer une carte chance ? (Y/N)")
+    if choix=="Y":
+        chance(joueur)
+    else:
+        prime(joueur,montant)
+
+def aller(joueur,case):
+    joueur.case=case.nom
+    if joueur.ncase<case.ncase and joueur.ncase>0:
+        joueur.argent+=20000
+    joueur.ncase=case.ncase
+
+def aller_sans_départ(joueur,case):
+    joueur.case=case.nom
+    joueur.ncase=case.ncase
+
+def anniversaire(joueur):
+    for player in joueurs:
+        if player is not joueur:
+            player.argent-=1000
+            joueur.argent+=1000
+
+def prime(joueur,montant):
+    joueur.argent+=montant
+
+def considérer_case(joueur):
+    prop=tellCase(joueur)
+    if prop.type=="propriété":
+        if prop in joueur.propriétés:
+            choix=input("Voulez-vous ajouter une maison ? (Y/N)")
+            if choix=="Y":
+                choix2=input("Combien ?")
+                if prop.nb_maison+choix2<=4:
+                    for i in range(choix2):
+                        prop.mettre_une_maison()
+                    return ("Vous avez placé",choix2,"maison(s)")
+            return ("Vous n'avez pas placé de maison")
+        for player in joueurs:
+            if (prop in player.propriétés and player!=joueur):
+                joueur.tomber_chez_qqun(player,prop)
+                return ("Vous avez payé",prop.loyer,"à",player,"...")
+        achat=input("Voulez-vous acheter cette case ? (Y/N)")
+        if achat=="Y":
+            joueur.acheter(prop)
+            return ("Vous avez acheté la propriété",prop.nom,"!")
+        else:
+            return ("Vous avez choisi de ne pas acheter la propriété")
+    elif prop.type=="effetP":
+        joueur.ncase=10
+        print("Vous allez en prison pour 3 tours")
+        joueur.compt_prison=3
+    elif prop.type=="effetI":
+        joueur.argent-=20000
+    elif prop.type=="effetT":
+        joueur.argent-=10000
+    elif prop.type=="effetC":
+        if Compagnie_d_Eau in joueur.propriétés and Compagnie_d_Electricité:
+            joueur.argent-=(1000*(lancer_de_dé+lancer_de_dé2))
+        else:
+            joueur.argent-=(400*(lancer_de_dé+lancer_de_dé2))
+    elif prop.type=="effetCh":
+        chance(joueur)
+    elif prop.type=="effetCo":
+        communaute(joueur)
+
+def tour(joueur):
+    lancer_de_dé=random.randint(1,6)
+    lancer_de_dé2=random.randint(1,6)
+    if joueur.compteur_prison>0:
+        if lancer_de_dé1==lance_de_dé2:
+            joueur.compteur_prison=0
+        else:
+            joueur.compteur_tour-=1
+            if joueur.compteur_prison==0:
+                if joueur.csp>=1:
+                    joueur.csp-=1
+                    cartes_chance.append("csp")
+                else:
+                    joueur.argent-=5000
+            else:
+                joueurA=joueurs.pop(0)
+                joueurs.append(joueurA)
+                tour(joueurs[0])
+    if lancer_de_dé1==lance_de_dé2:
+        compteur_double+=1
+        if compteur_double==3:
+            joueur.ncase=10
+            compteur_prison=3
+            return ("Vous allez en prison")
+        self.ncase+=lancer_de_dé*2
+        if self.ncase>=40:
+            self.case=self.ncase%40
+            joueur.argent+=20000
+        considérer_case()
+        tour(joueurs[0])
+    else:
+        self.ncase+=lancer_de_dé+lance_de_dé2
+        if self.ncase>=40:
+            self.ncase-=40
+            joueur.argent+=20000
+        considérer_case()
+        joueurA=joueurs.pop(0)
+        joueurs.append(joueurA)
+        tour(joueurs[0])
+
+
+Boulevard_de_Bellevile=Case("marron","propriété","Boulevard_de_Bellevile",1)
+Rue_Lecourbe=Case("marron","propriété","Rue_Lecourbe",3)
+Rue_de_Vaugirard=Case("bleu_clair","propriété","Rue_de_Vaugirard",6)
+Rue_de_Courcelles=Case("bleu_clair","propriété","Rue_de_Courcelles",8)
+Avenue_de_la_République=Case("bleu_clair","propriété","Avenue_de_la_République",9)
+Boulevard_de_la_Villette=Case("rose","propriété","Boulevard_de_la_Villette",11)
+Avenue_de_Neuilly=Case("rose","propriété","Avenue_de_Neuilly",13)
+Rue_de_Paradis=Case("rose","propriété","Rue_de_Paradis",14)
+Avenue_Mozart=Case("orange","propriété","Avenue_Mozart",16)
+Boulevard_Saint_Michel=Case("orange","propriété","Boulevard_Saint_Michel",18)
+Place_Pigalle=Case("orange","propriété","Place_Pigalle",19)
+Avenue_Matignon=Case("rouge","propriété","Avenue_Matignon",21)
+Boulevard_Malesherbes=Case("rouge","propriété","Boulevard_Malesherbes",23)
+Avenue_Henri_Martin=Case("rouge","propriété","Avenue_Henri_Martin",24)
+Faubourg_Saint_Honoré=Case("jaune","propriété","Faubourg_Saint_Honoré",26)
+Place_de_la_Bourse=Case("jaune","propriété","Place_de_la_Bourse",27)
+Rue_la_Fayette=Case("jaune","propriété","Rue_la_Fayette",29)
+Avenue_de_Breteuil=Case("vert","propriété","Avenue_de_Breteuil",31)
+Avenue_Foch=Case("vert","propriété","Avenue_Foch",32)
+Boulevard_des_Capucines=Case("vert","propriété","Boulevard_des_Capucines",34)
+Avenue_des_Champs_Elysées=Case("bleu","propriété","Avenue_des_Champs_Elysées",37)
+Rue_de_la_Paix=Case("bleu","propriété","Rue_de_la_Paix",39)
+Gare_Montparnasse=Case("gare","propriété","Gare_Montparnasse",5)
+Gare_de_Lyon=Case("gare","propriété","Gare_de_Lyon",15)
+Gare_du_Nord=Case("gare","propriété","Gare_du_Nord",25)
+Gare_Saint_Lazare=Case("gare","propriété","Gare_Saint_Lazare",35)
+Allez_en_Prison=Case(None,"effetP","Allez_en_Prison",30)
+Prison_SimpleVisite=Case(None,"neutre","Prison_SimpleVisite",10)
+Parc_Gratuit=Case(None,"neutre","Parc_Gratuit",20)
+Départ=Case(None,"neutre","Départ",0)
+Taxe_de_Luxe=Case(None,"effetT","Taxe_de_Luxe",38)
+Impôts=Case(None,"effetI","Impôts",4)
+Chance1=Case(None,"effetCh","Chance",7)
+Chance2=Case(None,"effetCh","Chance",22)
+Chance3=Case(None,"effetCh","Chance",36)
+Caisse_de_Communauté1=Case(None,"effetCo","Caisse_de_Communauté",2)
+Caisse_de_Communauté2=Case(None,"effetCo","Caisse_de_Communauté",17)
+Caisse_de_Communauté3=Case(None,"effetCo","Caisse_de_Communauté",33)
+Compagnie_d_Eau=Case(None,"effetC","Compagnie_d_Eau",28)
+Compagnie_d_Electricité=Case(None,"effetC","Compagnie_d_Electricité",12)
+
+propriétés=[
+Boulevard_de_Bellevile,
+Rue_Lecourbe,
+Rue_de_Vaugirard,
+Rue_de_Courcelles,
+Avenue_de_la_République,
+Boulevard_de_la_Villette,
+Avenue_de_Neuilly,
+Rue_de_Paradis,
+Avenue_Mozart,
+Boulevard_Saint_Michel,
+Place_Pigalle,
+Avenue_Matignon,
+Boulevard_Malesherbes,
+Avenue_Henri_Martin,
+Faubourg_Saint_Honoré,
+Place_de_la_Bourse,
+Rue_la_Fayette,
+Avenue_de_Breteuil,
+Avenue_Foch,
+Boulevard_des_Capucines,
+Avenue_des_Champs_Elysées,
+Rue_de_la_Paix,
+Gare_Montparnasse,
+Gare_de_Lyon,
+Gare_du_Nord,
+Gare_Saint_Lazare,
+Allez_en_Prison,
+Prison_SimpleVisite,
+Parc_Gratuit,
+Départ,
+Taxe_de_Luxe,
+Impôts,
+Chance1,
+Chance2,
+Chance3,
+Caisse_de_Communauté1,
+Caisse_de_Communauté2,
+Caisse_de_Communauté3,
+Compagnie_d_Eau,
+Compagnie_d_Electricité
+]
+
+
