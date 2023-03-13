@@ -22,6 +22,9 @@ class Case:
         self.ncase=ncase
 
     def mettre_une_maison(self):
+    """
+    Ajoute une maison sur une propriété si elle n'en possède pas déjà 4
+    """
         if self.type=="Propriété":
             if self.nb_maison<4:
                 self.loyer=round(self.loyer*1.5,0)
@@ -30,6 +33,9 @@ class Case:
                 raise IndexError('Trop de maisons')
 
     def poser_un_hôtel(self):
+    """
+    Transforme les 4 maisons en un hôtel lorsque l'on veut en poser une cinquième
+    """
         if self.type=="Propriété":
             if self.nb_maison==4:
                 self.loyer=round(self.loyer*2,0)
@@ -47,6 +53,9 @@ class Joueur:
         joueurs.append(self)
 
     def acheter(self,propriété):
+    """
+    Permet d'acheter une propriété si elle n'est possédée par aucun joueur
+    """
         for joueur in joueurs:
             if propriété in joueur.propriétés:
                 return ("Cette propriété appartient déjà à un joueur")
@@ -57,12 +66,18 @@ class Joueur:
             print("Vous n'avez pas assez d'argent")
 
     def vendre(self,propriété):
+    """
+    Permet de vendre une propriété, notamment lorsqu'on se trouve en manque d'argent
+    """
         self.argent+=propriété.prix//2
         for pro in self.propriétés:
             if pro.nom==propriété.nom:
                 self.propriétés.pop(pro)
 
     def tomber_chez_qqun(self,autre,propriété):
+    """
+    Gère lorsque le lancer de dé emmène le joueur sur la propriété d'un autre joueur
+    """
         if self.argent>=propriété.loyer:
             self.argent-=propriété.loyer
             autre.argent+=propriété.loyer
@@ -79,11 +94,17 @@ class Joueur:
                 self.vendre()
 
 def tellCase(joueur):
+"""
+Donne la case sactuelle sur laquelle le joueur est présent
+"""
     for prop in propriétés:
         if joueur.ncase==prop.ncase:
             return (prop)
 
 def chance(joueur):
+"""
+Considère les cartes chance
+"""
     action=chances.pop(0)
     #effectuer l'action
     chances.append(action)
@@ -95,9 +116,15 @@ chances=[("Gagnez 10000",prime(joueur,10000)),("Allez à la rue de la Paix",alle
 ("Perdez 15000",prime(joueur,-15000)),("Carte sortie de prison",prendre_csp(joueur))]
 
 def prendre_csp(joueur):
+"""
+Donne une carte sortie de prison lorsque le joueur en tire une
+"""
     joueur.csp+=1
 
 def impôts(joueur,i_maisons,i_hôtels):
+"""
+Considère les cartes chance "impôts"
+"""
         for propriété in joueur.propriétés:
                 if propriété.nb_maisons>5:
                         joueur.argent-=propriété.nb_maisons*i_maisons
@@ -105,6 +132,9 @@ def impôts(joueur,i_maisons,i_hôtels):
                         joueur.argent-=i_hôtels
 
 def communaute(joueur):
+"""
+Considère les cartes caisse de communauté
+"""
     carte=randint(1,len(communautés))
 
 communautés=[("Perdez 1000 ou tirez une carte chance",choix_chance(-1000)),("Perdez 5000",prime(joueur,-5000)),("Gagnez 10000",prime(joueur,10000)),("Gagnez 2500",prime(joueur,2500)),("Gagnez 20000",prime(joueur,20000)),
@@ -113,6 +143,9 @@ communautés=[("Perdez 1000 ou tirez une carte chance",choix_chance(-1000)),("Pe
 ("Allez à la case Départ",aller(joueur,Départ))]
 
 def choix_chance(montant):
+"""
+Considère la carte caisse de communauté spéciale "payer 1000 ou tirer une carte chance"
+"""
     choix = input("Décidez vous de tirer une carte chance ? (Y/N)")
     if choix=="Y":
         chance(joueur)
@@ -120,25 +153,40 @@ def choix_chance(montant):
         prime(joueur,montant)
 
 def aller(joueur,case):
+"""
+Considère les cartes chance et caisse de communauté "Allez à ... en passant par la case départ"
+"""
     joueur.case=case.nom
     if joueur.ncase<case.ncase and joueur.ncase>0:
         joueur.argent+=20000
     joueur.ncase=case.ncase
 
 def aller_sans_départ(joueur,case):
+"""
+Considère les cartes chance et caisse de communauté "Allez à ... sans passer par la case départ"
+"""
     joueur.case=case.nom
     joueur.ncase=case.ncase
 
 def anniversaire(joueur):
+"""
+Considère la carte caisse de communauté "C'est votre anniversaire"
+"""
     for player in joueurs:
         if player is not joueur:
             player.argent-=1000
             joueur.argent+=1000
 
 def prime(joueur,montant):
+"""
+Considère les cartes chance et caisse de communauté "Vous gagnez ..."
+"""
     joueur.argent+=montant
 
 def considérer_case(joueur):
+"""
+Effectue certaines actions en fonction de la case et si c'est une propriété appartenant au joueur
+"""
     prop=tellCase(joueur)
     if prop.type=="propriété":
         if prop in joueur.propriétés:
@@ -179,6 +227,9 @@ def considérer_case(joueur):
         communaute(joueur)
 
 def tour(joueur):
+"""
+Permet de lancer un tour de jeu
+"""
     lancer_de_dé=random.randint(1,6)
     lancer_de_dé2=random.randint(1,6)
     if joueur.compteur_prison>0:
