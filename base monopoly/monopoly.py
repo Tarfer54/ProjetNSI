@@ -17,7 +17,7 @@ class Game:
         pass
 
     def display(self):
-        screen.blit(plateau,(300,125))
+        screen.blit(plateau,(250,250))
         pygame.display.flip()
 
 
@@ -30,7 +30,7 @@ class Game:
 
 
 pygame.init()
-screen=pygame.display.set_mode((1080,720))
+screen=pygame.display.set_mode((1000,1000))
 plateau=pygame.image.load("monopoly.jpg").convert()
 game=Game(screen)
 game.run()
