@@ -12,10 +12,11 @@ loyer={'marron':60,
         }
 
 class Case:
-    def __init__(self,type,nom,ncase,couleur=None):
+    def __init__(self,type,nom,ncase,x,y,couleur=None):
         self.nom=nom
         self.type=type
         self.couleur=couleur
+        self.coordonnees=(x,y)
         if self.couleur!=None:
             self.loyer=loyer[self.couleur]
             self.prix=self.loyer*5
@@ -217,6 +218,7 @@ def communaute(joueur):
             aller_sans_départ(joueur,action[1])
         elif "Payez des réparations" in action[0]:
             impôts(joueur,action[1])
+            joueur.verif_argent()
         elif "Reculez" in action[0]:
             reculer(joueur,action[1])
         elif "anniversaire" in action[0]:
@@ -243,6 +245,7 @@ def chance(joueur):
             aller_sans_départ(joueur,action[1])
         elif "Payez des réparations" in action[0]:
             impôts(joueur,action[1])
+            joueur.verif_argent()
         elif "Reculez" in action[0]:
             reculer(joueur,action[1])
     else:
@@ -335,12 +338,12 @@ def tour(joueur):
         joueurs.append(joueurA)
         tour(joueurs[0])
 
-Boulevard_de_Belleville=Case("propriété","Boulevard_de_Bellevile",1,"marron")
-Rue_Lecourbe=Case("propriété","Rue_Lecourbe",3,"marron")
-Rue_de_Vaugirard=Case("propriété","Rue_de_Vaugirard",6,"bleu_clair")
-Rue_de_Courcelles=Case("propriété","Rue_de_Courcelles",8,"bleu_clair")
-Avenue_de_la_République=Case("propriété","Avenue_de_la_République",9,"bleu_clair")
-Boulevard_de_la_Villette=Case("propriété","Boulevard_de_la_Villette",11,"rose")
+Boulevard_de_Belleville=Case("propriété","Boulevard_de_Bellevile",1,655,708,"marron")
+Rue_Lecourbe=Case("propriété","Rue_Lecourbe",3,575,708,"marron")
+Rue_de_Vaugirard=Case("propriété","Rue_de_Vaugirard",6,455,708,,708"bleu_clair")
+Rue_de_Courcelles=Case("propriété","Rue_de_Courcelles",8,375,708,"bleu_clair")
+Avenue_de_la_République=Case("propriété","Avenue_de_la_République",9,335,708,"bleu_clair")
+Boulevard_de_la_Villette=Case("propriété","Boulevard_de_la_Villette",11,282,655,"rose")
 Avenue_de_Neuilly=Case("propriété","Avenue_de_Neuilly",13,"rose")
 Rue_de_Paradis=Case("propriété","Rue_de_Paradis",14,"rose")
 Avenue_Mozart=Case("propriété","Avenue_Mozart",16,"orange")
@@ -361,10 +364,10 @@ Gare_Montparnasse=Case("propriété","Gare_Montparnasse",5,"gare")
 Gare_de_Lyon=Case("propriété","Gare_de_Lyon",15,"gare")
 Gare_du_Nord=Case("propriété","Gare_du_Nord",25,"gare")
 Gare_Saint_Lazare=Case("propriété","Gare_Saint_Lazare",35,"gare")
-Allez_en_Prison=Case("effetP","Allez_en_Prison",30)
-Prison_SimpleVisite=Case("neutre","Prison_SimpleVisite",10)
-Parc_Gratuit=Case("neutre","Parc_Gratuit",20)
-Départ=Case("neutre","Départ",0)
+Allez_en_Prison=Case("effetP","Allez_en_Prison",30,708,282)
+Prison_SimpleVisite=Case("neutre","Prison_SimpleVisite",10,282,708)
+Parc_Gratuit=Case("neutre","Parc_Gratuit",20,282,282)
+Départ=Case("neutre","Départ",0,708,708)
 Taxe_de_Luxe=Case("effetT","Taxe_de_Luxe",38)
 Impôts=Case("effetI","Impôts",4)
 Chance1=Case("effetCh","Chance",7)
