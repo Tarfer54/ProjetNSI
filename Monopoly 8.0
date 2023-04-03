@@ -271,14 +271,14 @@ def considérer_case(joueur):
         print("Vous allez en prison pour 3 tours")
         joueur.compt_prison=3
     elif prop.type=="effetI":
-        joueur.argent-=20000
+        joueur.argent-=200
     elif prop.type=="effetT":
-        joueur.argent-=10000
+        joueur.argent-=100
     elif prop.type=="effetC":
         if Compagnie_d_Eau in joueur.propriétés and Compagnie_d_Electricité in joueur.propriétés:
-            joueur.argent-=(1000*(lancer_de_dé+lancer_de_dé2))
+            joueur.argent-=(10*(lancer_de_dé+lancer_de_dé2))
         else:
-            joueur.argent-=(400*(lancer_de_dé+lancer_de_dé2))
+            joueur.argent-=(4*(lancer_de_dé+lancer_de_dé2))
     elif prop.type=="effetCh":
         chance(joueur)
     elif prop.type=="effetCo":
@@ -300,7 +300,7 @@ def tour(joueur):
                     joueur.csp-=1
                     cartes_chance.append("csp")
                 else:
-                    joueur.argent-=5000
+                    joueur.argent-=50
             else:
                 joueurA=joueurs.pop(0)
                 joueurs.append(joueurA)
@@ -314,14 +314,14 @@ def tour(joueur):
         self.ncase+=lancer_de_dé*2
         if self.ncase>=40:
             self.case=self.ncase%40
-            joueur.argent+=20000
+            joueur.argent+=200
         considérer_case()
         tour(joueurs[0])
     else:
         self.ncase+=lancer_de_dé+lance_de_dé2
         if self.ncase>=40:
             self.ncase-=40
-            joueur.argent+=20000
+            joueur.argent+=200
         considérer_case()
         joueurA=joueurs.pop(0)
         joueurs.append(joueurA)
