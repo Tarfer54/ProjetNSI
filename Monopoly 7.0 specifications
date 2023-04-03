@@ -121,7 +121,7 @@ def nb_joueurs(nb):
     if nb>=3:
         j3=Joueur()
         joueurs.append(j3)
-        if nb>=4:
+        if nb=4:
             j4=Joueur()
             joueurs.append(j4)
 
