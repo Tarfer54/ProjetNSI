@@ -22,6 +22,7 @@ class Case:
             self.prix=self.loyer*5
             self.nb_maison=0
         self.ncase=ncase
+        self.coordonnées=(x,y)
 
     def mettre_une_maison(self):
         """
