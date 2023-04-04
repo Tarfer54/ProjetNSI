@@ -138,7 +138,7 @@ def aller(joueur,case):
     Considère les cartes chance et caisse de communauté "Allez à ... en passant par la case départ"
     """
     joueur.case=case.nom
-    if joueur.ncase<case.ncase and joueur.ncase>0:
+    if joueur.ncase>case.ncase:
         joueur.argent+=20000
     joueur.ncase=case.ncase
 
