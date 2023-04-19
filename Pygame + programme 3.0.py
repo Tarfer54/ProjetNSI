@@ -141,29 +141,14 @@ class Screen:
 
 
 
-
-
-
-loyer={'marron':60,
-        'bleu_clair':100,
-        'rose':140,
-        'orange':180,
-        'rouge':220,
-        'jaune':260,
-        'vert':300,
-        'bleu':350,
-        'gare':200
-        }
-
 class Case:
-    def __init__(self,type,nom,ncase,x,y,couleur=None):
+    def __init__(self,type,nom,ncase,x,y,couleur=None,loyer=None):
         self.nom=nom
         self.type=type
         self.couleur=couleur
         self.coordonnees=(x,y)
         if self.couleur!=None:
-            self.loyer=loyer[self.couleur]
-            self.prix=self.loyer*5
+            self.prix=loyer
             self.nb_maison=0
         self.ncase=ncase
         self.coordonnées=(x,y)
@@ -445,32 +430,32 @@ def considérer_case(joueur):
 
 
 
-Boulevard_de_Belleville=Case("propriété","Boulevard_de_Bellevile",1,655,708,"marron")
-Rue_Lecourbe=Case("propriété","Rue_Lecourbe",3,575,708,"marron")
-Rue_de_Vaugirard=Case("propriété","Rue_de_Vaugirard",6,455,708,"bleu_clair")
-Rue_de_Courcelles=Case("propriété","Rue_de_Courcelles",8,375,708,"bleu_clair")
-Avenue_de_la_République=Case("propriété","Avenue_de_la_République",9,335,708,"bleu_clair")
-Boulevard_de_la_Villette=Case("propriété","Boulevard_de_la_Villette",11,282,655,"rose")
-Avenue_de_Neuilly=Case("propriété","Avenue_de_Neuilly",13,282,575,"rose")
-Rue_de_Paradis=Case("propriété","Rue_de_Paradis",14,282,535,"rose")
-Avenue_Mozart=Case("propriété","Avenue_Mozart",16,282,455,"orange")
-Boulevard_Saint_Michel=Case("propriété","Boulevard_Saint_Michel",18,282,375,"orange")
-Place_Pigalle=Case("propriété","Place_Pigalle",19,282,335,"orange")
-Avenue_Matignon=Case("propriété","Avenue_Matignon",21,335,282,"rouge")
-Boulevard_Malesherbes=Case("propriété","Boulevard_Malesherbes",23,415,282,"rouge")
-Avenue_Henri_Martin=Case("propriété","Avenue_Henri_Martin",24,455,282,"rouge")
-Faubourg_Saint_Honoré=Case("propriété","Faubourg_Saint_Honoré",26,535,282,"jaune")
-Place_de_la_Bourse=Case("propriété","Place_de_la_Bourse",27,575,282,"jaune")
-Rue_la_Fayette=Case("propriété","Rue_la_Fayette",29,655,282,"jaune")
-Avenue_de_Breteuil=Case("propriété","Avenue_de_Breteuil",31,708,335,"vert")
-Avenue_Foch=Case("propriété","Avenue_Foch",32,708,375,"vert")
-Boulevard_des_Capucines=Case("propriété","Boulevard_des_Capucines",34,708,455,"vert")
-Avenue_des_Champs_Elysées=Case("propriété","Avenue_des_Champs_Elysées",37,708,575,"bleu")
-Rue_de_la_Paix=Case("propriété","Rue_de_la_Paix",39,708,655,"bleu")
-Gare_Montparnasse=Case("propriété","Gare_Montparnasse",5,495,708,"gare")
-Gare_de_Lyon=Case("propriété","Gare_de_Lyon",15,282,495,"gare")
-Gare_du_Nord=Case("propriété","Gare_du_Nord",25,495,282,"gare")
-Gare_Saint_Lazare=Case("propriété","Gare_Saint_Lazare",35,708,495,"gare")
+60)
+Rue_Lecourbe=Case("propriété","Rue_Lecourbe",3,575,708,"marron",60)
+Rue_de_Vaugirard=Case("propriété","Rue_de_Vaugirard",6,455,708,"bleu_clair",100)
+Rue_de_Courcelles=Case("propriété","Rue_de_Courcelles",8,375,708,"bleu_clair",100)
+Avenue_de_la_République=Case("propriété","Avenue_de_la_République",9,335,708,"bleu_clair",120)
+Boulevard_de_la_Villette=Case("propriété","Boulevard_de_la_Villette",11,282,655,"rose",140)
+Avenue_de_Neuilly=Case("propriété","Avenue_de_Neuilly",13,282,575,"rose",140)
+Rue_de_Paradis=Case("propriété","Rue_de_Paradis",14,282,535,"rose",160)
+Avenue_Mozart=Case("propriété","Avenue_Mozart",16,282,455,"orange",180)
+Boulevard_Saint_Michel=Case("propriété","Boulevard_Saint_Michel",18,282,375,"orange",180)
+Place_Pigalle=Case("propriété","Place_Pigalle",19,282,335,"orange",200)
+Avenue_Matignon=Case("propriété","Avenue_Matignon",21,335,282,"rouge",220)
+Boulevard_Malesherbes=Case("propriété","Boulevard_Malesherbes",23,415,282,"rouge",220)
+Avenue_Henri_Martin=Case("propriété","Avenue_Henri_Martin",24,455,282,"rouge",240)
+Faubourg_Saint_Honoré=Case("propriété","Faubourg_Saint_Honoré",26,535,282,"jaune",260)
+Place_de_la_Bourse=Case("propriété","Place_de_la_Bourse",27,575,282,"jaune",260)
+Rue_la_Fayette=Case("propriété","Rue_la_Fayette",29,655,282,"jaune",280)
+Avenue_de_Breteuil=Case("propriété","Avenue_de_Breteuil",31,708,335,"vert",300)
+Avenue_Foch=Case("propriété","Avenue_Foch",32,708,375,"vert",300)
+Boulevard_des_Capucines=Case("propriété","Boulevard_des_Capucines",34,708,455,"vert",320)
+Avenue_des_Champs_Elysées=Case("propriété","Avenue_des_Champs_Elysées",37,708,575,"bleu",350)
+Rue_de_la_Paix=Case("propriété","Rue_de_la_Paix",39,708,655,"bleu",400)
+Gare_Montparnasse=Case("propriété","Gare_Montparnasse",5,495,708,"gare",200)
+Gare_de_Lyon=Case("propriété","Gare_de_Lyon",15,282,495,"gare",200)
+Gare_du_Nord=Case("propriété","Gare_du_Nord",25,495,282,"gare",200)
+Gare_Saint_Lazare=Case("propriété","Gare_Saint_Lazare",35,708,495,"gare",200)
 Allez_en_Prison=Case("effetP","Allez_en_Prison",30,708,282)
 Prison_SimpleVisite=Case("neutre","Prison_SimpleVisite",10,282,708)
 Parc_Gratuit=Case("neutre","Parc_Gratuit",20,282,282)
