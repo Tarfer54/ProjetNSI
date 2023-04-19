@@ -430,7 +430,7 @@ def considérer_case(joueur):
 
 
 
-60)
+Boulevard_de_Belleville=Case("propriété","Boulevard_de_Bellevile",1,655,708,"marron",60)
 Rue_Lecourbe=Case("propriété","Rue_Lecourbe",3,575,708,"marron",60)
 Rue_de_Vaugirard=Case("propriété","Rue_de_Vaugirard",6,455,708,"bleu_clair",100)
 Rue_de_Courcelles=Case("propriété","Rue_de_Courcelles",8,375,708,"bleu_clair",100)
