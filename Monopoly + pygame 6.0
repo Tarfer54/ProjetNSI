@@ -167,6 +167,8 @@ class Screen:
                     joueurA=joueurs.pop(0)
                     joueurs.append(joueurA)
         while lancer1==lancer2:
+                if joueur.prison:
+                        break
             compteur_double+=1
             if compteur_double==3:
                 joueur.ncase=10
