@@ -41,8 +41,6 @@ loyers={1:[2,10,30,90,160,250],
         39:[50,200,600,1400,1700,2000]
         }
 
-
-
 class Game:
     def __init__(self, screen,joueurs,argent_d):
         self.screen = screen
@@ -93,7 +91,6 @@ class Screen:
             self.init.blit(self.pion_j,(725,690))
 
     def dé(self,lancer1,lancer2):
-
         if lancer1==1:
             self.dé_1=pygame.image.load("Dé_1.png").convert()
         elif lancer1==2:
@@ -188,10 +185,6 @@ class Screen:
         joueurA=joueurs.pop(0)
         joueurs.append(joueurA)
 
-
-
-
-
 class Case:
     def __init__(self,type,nom,ncase,x,y,couleur=None,loyer=None):
         self.nom=nom
@@ -263,7 +256,6 @@ class Joueur:
             self.pion=screen.pion_r
         elif self.couleur=="jaune":
             self.pion=screen.pion_j
-
 
     def verif_argent(self):
         """
@@ -354,7 +346,6 @@ class Joueur:
                         propriété=input("Cette propriété ne vous appartient pas, quelle propriété voulez-vous vendre ?")
                     self.vendre()
 
-
     def actualiser_pion(self,ncase,propriétés):
         for prop in propriétés:
             if ncase==prop.ncase:
@@ -434,10 +425,9 @@ def tellCase(joueur):
         if joueur.ncase==prop.ncase:
             return (prop)
 
-
 def choix_chance(montant):
     """
-    Considère la carte caisse de communauté spéciale "payer 1000 ou tirer une carte chance"
+    Considère la carte caisse de communauté spéciale "payer 10 ou tirer une carte chance"
     """
     choix = input("Décidez vous de tirer une carte chance ? (Y/N)")
     if choix=="Y":
@@ -555,7 +545,6 @@ def chance(joueur):
             reculer(joueur,action[1])
     else:
         prendre_csp(joueur)
-
 
 def considérer_case(joueur,lancer1,lancer2):
     """
@@ -680,7 +669,6 @@ Compagnie_d_Eau,
 Compagnie_d_Electricité
 ]
 
-
 cartes_chances=[("Gagnez 100",100),("Allez à la rue de la Paix",Rue_de_la_Paix),("Payez des réparations : 40 par maison / 115 par hôtel",(40,115)),("Allez en prison",Prison_SimpleVisite),
 ("Gagnez 150",150),("Reculez de 3 cases",3),("Allez à la case Départ",Départ),("Gagnez 50",50),("Allez à la Gare de Lyon",Gare_de_Lyon),("Perdez 20",-20),
 ("Perdez 15",-15),("Allez à l'avenue Henri-Martin",Avenue_Henri_Martin),("Payez des réparations : 25 par maison / 100 par hôtel",(25,100)),("Allez au Boulevard de la Vilette",Boulevard_de_la_Villette),
@@ -692,7 +680,6 @@ cartes_communautés=[("Perdez 10 ou tirez une carte chance",-10),("Perdez 50",-5
 
 random.shuffle(cartes_chances)
 random.shuffle(cartes_communautés)
-
 
 joueurs = []
 nb_j=int(input("Combien y a-t-il de joueurs ? (de 2 à 4)"))
@@ -712,17 +699,8 @@ while argent_d<1500 or argent_d>3000:
         print("Somme de départ trop grande")
     argent_d=int(input("Argent de départ ? (de 1500 à 3000)"))
 
-
-
-
-
-
-
-
 screen=Screen(1000,1000)
 nb_joueurs(nb_j)
 game=Game(screen,joueurs,argent_d)
 game.run()
 pygame.quit()
-
-
