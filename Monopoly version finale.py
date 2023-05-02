@@ -419,7 +419,7 @@ def nb_joueurs(nb):
 
 def tellCase(joueur):
     """
-    Donne la case sactuelle sur laquelle le joueur est présent
+    Donne la case actuelle sur laquelle le joueur est présent
     """
     for prop in propriétés:
         if joueur.ncase==prop.ncase:
